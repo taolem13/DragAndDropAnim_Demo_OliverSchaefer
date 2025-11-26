@@ -34,6 +34,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Face
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -80,7 +81,11 @@ fun DragAndDropBoxes(modifier: Modifier = Modifier) {
             modifier = modifier
                 .fillMaxWidth()
                 .weight(0.2f)
-        ) {
+
+
+        )
+
+        {
             val boxCount = 4
             var dragBoxIndex by remember {
                 mutableIntStateOf(0)
@@ -138,12 +143,20 @@ fun DragAndDropBoxes(modifier: Modifier = Modifier) {
                 }
             }
         }
+        Button(
+            onClick = {
+                isPlaying = false
+            },
+            modifier = Modifier.padding(16.dp)
+        ) {
+            Text("Reset Rectangle")
+        }
 
 
         val pOffset by animateIntOffsetAsState(
             targetValue = when (isPlaying) {
                 true -> IntOffset(130, 300)
-                false -> IntOffset(130, 100)
+                false -> IntOffset(400, 80)
             },
             animationSpec = tween(3000, easing = LinearEasing)
         )
